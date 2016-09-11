@@ -24,6 +24,7 @@ io.on('connection', function(socket){
 	var timestamp = now.valueOf();
 
 	socket.emit('message', {
+		name: 'System',
 		text: 'Welcome to the chat application!', 
 		time: moment.utc(timestamp).local().format('h:mm a')
 	});
