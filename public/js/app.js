@@ -3,12 +3,18 @@ var room = getQueryVariable('room');
 
 var socket = io();
 
+jQuery('.room-name').append(room);
+
 socket.on('connect', function(){
 	console.log('Connected to socket.io server!');
+	socket.emit('joinRoom', {
+		name: name, 
+		room: room
+	});
 });
 
 socket.on('message', function(message){
-	jQuery('.messages').append('<p><strong>'+message.name+' '+'@'+' '+'</strong>'+message.room+'</p>');
+	jQuery('.messages').append('<p><strong>'+message.name+'</strong></p>');
 	jQuery('.messages').append('<p><strong>'+message.time+': </strong> '+message.text+'</p>');	
 });
 
